@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
 {
     public Camera cam;
     public GameObject ball;
+    public float timeLeft;
 
     private float maxWidth;
 
@@ -21,10 +22,15 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        timeLeft -= Time.deltaTime;
+    }
+
     IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2.0f);
-        while (true)
+        while (timeLeft > 0)
         {
             Vector3 spawnPosition = new Vector3(
                 Random.Range(-maxWidth, maxWidth),
