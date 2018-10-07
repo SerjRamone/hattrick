@@ -1003,7 +1003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1463522188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1168,6 +1168,8 @@ MonoBehaviour:
   ball: {fileID: 1471433441043530, guid: d1d664e509938b4458926375026caa94, type: 2}
   timeLeft: 10
   timerText: {fileID: 1337973270}
+  gameOverText: {fileID: 1463522187}
+  restartButton: {fileID: 1994170073}
 --- !u!4 &1907762504
 Transform:
   m_ObjectHideFlags: 0
@@ -1261,7 +1263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1994170074
 RectTransform:
   m_ObjectHideFlags: 0

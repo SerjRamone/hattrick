@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     public GameObject ball;
     public float timeLeft;
     public Text timerText;
+    public GameObject gameOverText;
+    public GameObject restartButton; 
 
     private float maxWidth;
 
@@ -50,6 +52,10 @@ public class GameController : MonoBehaviour
             Instantiate(ball, spawnPosition, spawnRotation);
             yield return new WaitForSeconds(Random.Range(1.0f, 2.0f));
         }
+        yield return new WaitForSeconds(2.0f);
+        gameOverText.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        restartButton.SetActive(true);
     }
 
     void UpdateText()
