@@ -49,3 +49,6 @@ TagManager:
   - name: Foreground
     uniqueID: 2440895003
     locked: 0
+  - name: Sparks
+    uniqueID: 1359324657
+    locked: 0
