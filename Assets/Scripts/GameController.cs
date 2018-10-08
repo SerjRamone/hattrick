@@ -9,9 +9,13 @@ public class GameController : MonoBehaviour
     public float timeLeft;
     public Text timerText;
     public GameObject gameOverText;
-    public GameObject restartButton; 
+    public GameObject restartButton;
+    public GameObject splashScreen;
+    public GameObject startButton;
+    public HatController hatController;
 
     private float maxWidth;
+    private bool playing;
 
     private void Start()
     {
@@ -20,27 +24,39 @@ public class GameController : MonoBehaviour
             cam = Camera.main;
         }
 
+        playing = false;
         Vector3 upperCorner = new Vector3(Screen.width, Screen.height, .0f);
         Vector3 targetWidth = cam.ScreenToWorldPoint(upperCorner);
         float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
         maxWidth = targetWidth.x - ballWidth;
-        StartCoroutine(Spawn());
         UpdateText();
     }
 
     private void FixedUpdate()
     {
-        timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
+        if (playing)
         {
-            timeLeft = 0;
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                timeLeft = 0;
+            }
+            UpdateText();
         }
-        UpdateText();
+    }
+
+    public void StartGame()
+    {
+        splashScreen.SetActive(false);
+        startButton.SetActive(false);
+        hatController.ToggleControll(true);
+        StartCoroutine(Spawn());
     }
 
     IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2.0f);
+        playing = true;
         while (timeLeft > 0)
         {
             Vector3 spawnPosition = new Vector3(
