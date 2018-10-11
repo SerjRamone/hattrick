@@ -5,7 +5,7 @@ using System.Collections;
 public class GameController : MonoBehaviour
 {
     public Camera cam;
-    public GameObject ball;
+    public GameObject[] balls;
     public float timeLeft;
     public Text timerText;
     public GameObject gameOverText;
@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         playing = false;
         Vector3 upperCorner = new Vector3(Screen.width, Screen.height, .0f);
         Vector3 targetWidth = cam.ScreenToWorldPoint(upperCorner);
-        float ballWidth = ball.GetComponent<Renderer>().bounds.extents.x;
+        float ballWidth = balls[0].GetComponent<Renderer>().bounds.extents.x;
         maxWidth = targetWidth.x - ballWidth;
         UpdateText();
     }
@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
         playing = true;
         while (timeLeft > 0)
         {
+            GameObject ball = balls[Random.Range(0, balls.Length)];
             Vector3 spawnPosition = new Vector3(
                 Random.Range(-maxWidth, maxWidth),
                 transform.position.y,
